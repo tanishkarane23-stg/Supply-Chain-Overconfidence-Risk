@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Entering the Upside Down | Supply Chain Risk</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&amp;family=Cutive+Mono&amp;family=Creepster&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff0000",
+              "background-light": "#1a1a1a",
+              "background-dark": "#050505",
+            },
+            fontFamily: {
+              display: ["'Special Elite'", "serif"],
+              mono: ["'Cutive Mono'", "monospace"],
+              horror: ["'Creepster'", "cursive"],
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'drift': 'drift 10s ease-in-out infinite',
+              'glitch': 'glitch 1s linear infinite',
+              'portal-expand': 'portal-expand 3s ease-out forwards',
+            },
+            keyframes: {
+              drift: {
+                '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+                '50%': { transform: 'translate(-20px, 20px) scale(1.1)' },
+              },
+              glitch: {
+                '0%': { transform: 'translate(0)' },
+                '20%': { transform: 'translate(-2px, 2px)' },
+                '40%': { transform: 'translate(-2px, -2px)' },
+                '60%': { transform: 'translate(2px, 2px)' },
+                '80%': { transform: 'translate(2px, -2px)' },
+                '100%': { transform: 'translate(0)' },
+              },
+              'portal-expand': {
+                '0%': { transform: 'scale(0) rotate(0deg)', opacity: '0' },
+                '100%': { transform: 'scale(1) rotate(10deg)', opacity: '1' },
+              }
+            }
+          },
+        },
+      };
+    </script>
+<style>body {
+    background-color: #050505;
+    overflow: hidden;
+    height: 100vh
+    }
+.portal-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #1a0505 0%, #000 70%)
+    }.rift {
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    background: #000;
+    border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+    box-shadow: 0 0 40px #f00, 0 0 80px #800, inset 0 0 100px #400;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    animation: portal-expand 2s ease-out forwards
+    }
+.rift::before {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAeBEBDmvs3XdnsQ7jXuteiwNQpFkAEJwUQeyOz-rwTiHj2kUSjxxem3-HmkzhT-I2f5urtwZqPcpRFTp5IE8-L9DF5UNXEODstFbbZyJQMII0JYKjmbH1ChVMGWRnvPsFD_LhDXYRezhfXLMpIZhCLSUw39JwtFD73M4rwZ1sriFoL8wda8oNEFmJc6_4unmKxPZNsdIdDVUEwLKUu_eQZpMs7A2regwTY-0NYiEUOYCmypQZbgSSavKCTcVL-5lmt6ksDUZ0BWJ0);
+    opacity: 0.3;
+    animation: drift 20s linear infinite
+    }.tendril {
+    position: absolute;
+    background: #f00;
+    filter: blur(8px);
+    opacity: 0.6
+    }.spore {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5
+    }
+.scanline {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 0, 0, 0.1);
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    animation: scan 4s linear infinite
+    }
+@keyframes scan {
+    0% {
+        top: 0;
+        } 100% {
+        top: 100%;
+        }
+    }
+.portal-overlay {
+    background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.9) 80%);
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    pointer-events: none
+    }
+.vignette {
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 1);
+    position: absolute;
+    inset: 0;
+    z-index: 25;
+    pointer-events: none
+    }</style>
+</head>
+<body class="font-display text-white select-none">
+<div class="portal-container">
+<div class="vignette"></div>
+<div class="scanline"></div>
+<div id="spore-container"></div>
+<div class="rift">
+<div class="text-center z-30 px-8">
+<h2 class="text-primary font-horror text-4xl mb-4 tracking-widest animate-pulse">
+                    ACCESSING THE UPSIDE DOWN
+                </h2>
+<p class="font-mono text-sm text-gray-400 mb-8 max-w-xs mx-auto">
+                    Bypassing dimensional firewalls... <br/>
+                    Scanning supply chain vulnerabilities...
+                </p>
+<div class="flex justify-center space-x-2">
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
+</div>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-red-900/50 to-transparent pointer-events-none"></div>
+</div>
+<div class="absolute w-[500px] h-[700px] bg-red-900/20 blur-[100px] rounded-full z-0 animate-pulse-slow"></div>
+<div class="absolute bottom-12 left-0 w-full flex flex-col items-center z-30">
+<p class="text-red-600 font-mono text-xs mb-4 tracking-tighter uppercase opacity-60">
+                Authorized Personnel Only | System ID: HAWKINS-011
+            </p>
+<a class="group relative px-10 py-4 overflow-hidden border border-red-900/50 bg-black/40 backdrop-blur-sm transition-all hover:border-primary" href="/input">
+<div class="absolute inset-0 w-0 bg-primary transition-all duration-300 ease-out group-hover:w-full opacity-20"></div>
+<span class="relative z-10 text-xl tracking-[0.2em] font-display text-gray-300 group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]">
+                    ENTER DIAGNOSTICS
+                </span>
+</a>
+<button class="mt-8 text-gray-600 hover:text-gray-400 text-xs font-mono transition-colors uppercase tracking-widest underline underline-offset-4" onclick="window.history.back()">
+                Abort Mission
+            </button>
+</div>
+<div class="absolute left-10 top-1/2 -translate-y-1/2 hidden lg:block opacity-20">
+<div class="rotate-90 origin-left text-[10px] font-mono tracking-[1em] uppercase text-red-500 whitespace-nowrap">
+                OVERCONFIDENCE DETECTED :: PROTOCOL 439
+            </div>
+</div>
+<div class="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:block opacity-20">
+<div class="-rotate-90 origin-right text-[10px] font-mono tracking-[1em] uppercase text-red-500 whitespace-nowrap">
+                CRITICAL RISK THRESHOLD EXCEEDED
+            </div>
+</div>
+</div>
+<script>
+        // Generate floating spores/ash
+        const sporeContainer = document.getElementById('spore-container');
+        const sporeCount = 60;
+        for (let i = 0; i < sporeCount; i++) {
+            const spore = document.createElement('div');
+            spore.className = 'spore';
+            const size = Math.random() * 3 + 1;
+            const startX = Math.random() * 100;
+            const startY = Math.random() * 100;
+            const duration = Math.random() * 10 + 10;
+            const delay = Math.random() * -20;
+            spore.style.width = `${size}px`;
+            spore.style.height = `${size}px`;
+            spore.style.left = `${startX}%`;
+            spore.style.top = `${startY}%`;
+            spore.style.opacity = Math.random() * 0.5 + 0.1;
+            // Random movement via CSS animation
+            spore.animate([
+                { transform: 'translate(0, 0)', opacity: 0 },
+                { opacity: 0.5, offset: 0.2 },
+                { transform: `translate(${Math.random() * 100 - 50}px, ${-Math.random() * 200 - 50}px)`, opacity: 0 }
+            ], {
+                duration: duration * 1000,
+                iterations: Infinity,
+                delay: delay * 1000,
+                easing: 'ease-in-out'
+            });
+            sporeContainer.appendChild(spore);
+        }
+        // Mouse interaction for subtle parallax
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 50;
+            const moveY = (e.clientY - window.innerHeight / 2) / 50;
+            const rift = document.querySelector('.rift');
+            const portalGlow = document.querySelector('.bg-red-900\\/20');
+            rift.style.transform = `translate(${moveX}px, ${moveY}px) scale(1) rotate(${moveX * 0.1}deg)`;
+            portalGlow.style.transform = `translate(${moveX * -1.5}px, ${moveY * -1.5}px)`;
+        });
+    </script>
+
+</body></html>

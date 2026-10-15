@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Supply Chain Data Upload (Vined) - Hawkins Lab</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#ff0000",
+                        "background-light": "#0a0a0a",
+                        "background-dark": "#050505",
+                    },
+                    fontFamily: {
+                        display: ["'Special Elite'", "cursive"],
+                        mono: ["'Courier Prime'", "monospace"],
+                    },
+                    boxShadow: {
+                        'neon': '0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.4)',
+                        'neon-strong': '0 0 20px rgba(255, 0, 0, 0.9), 0 0 40px rgba(255, 0, 0, 0.6)',
+                    }
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        :root { --upside-down-red: #4a0404; --vine-color: #1a1a1a; }
+        body {
+            background-color: #000;
+            background-image: 
+                radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.9) 100%),
+                radial-gradient(circle at 50% 50%, var(--upside-down-red) 0%, transparent 70%);
+            background-attachment: fixed;
+        }
+        .vines-overlay {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDZm7dLavl4iu2RQCUjhC6IiWAEcxxYvaq0K81ihMTFjQ5TOiax1kSR2ugnW3QpEV5Y9cCvzJ_i1EQLrtHGckF_cNBexZjBOi9r3vI5jUZpfEDehSI0_CXS8-gL4K3NMzwZ7EEuIp8Bm8tipRnnOtO1Y2vYrTq7hkKyq3wdtc_61qV67KxY3E6Rivq4dvOcj11cx9_qX-zWdYm9ZNGj39cbKNoxoM8w5IN2HYo3FNJi1_Op5qRIWg7CVmDn9lAEY2A-0-45gyhPZsU);
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            mix-blend-mode: multiply;
+            pointer-events: none;
+        }
+        .neon-text { text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.5); }
+        .scanline {
+            background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
+            background-size: 100% 2px, 3px 100%;
+        }
+        input[type="file"]::file-selector-button {
+            background-color: #1a1a1a; color: #ff0000; padding: 8px 16px;
+            border: 1px solid #440000; border-radius: 4px; cursor: pointer;
+            font-family: "Courier Prime", monospace; margin-right: 10px;
+            transition: all 0.3s; text-transform: uppercase; font-size: 0.75rem;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background-color: #330000; border-color: #ff0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-dark min-h-screen font-mono text-gray-200 overflow-x-hidden">
+    <div class="fixed inset-0 vines-overlay z-0"></div>
+    <div class="fixed inset-0 pointer-events-none opacity-20 z-50 overflow-hidden scanline"></div>
+    
+    <main class="relative z-10 container mx-auto px-4 py-12 flex flex-col items-center justify-center min-h-screen">
+        <header class="mb-16 text-center">
+            <h1 class="font-display text-4xl md:text-5xl text-primary neon-text tracking-widest uppercase mb-4">
+                Upload Supply Chain Data
+            </h1>
+            <p class="text-xs text-red-500/80 uppercase tracking-[0.5em] font-bold">
+                System Status: Compromised / Upside Down Access Detected
+            </p>
+        </header>
+
+        <form method="POST" enctype="multipart/form-data" class="w-full max-w-6xl flex flex-col items-center">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-16">
+                
+                <div class="bg-black/60 backdrop-blur-md border border-zinc-800 p-8 rounded-lg flex flex-col hover:border-primary/50 transition-all duration-500 group relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity bg-[url(https://lh3.googleusercontent.com/aida-public/AB6AXuDZm7dLavl4iu2RQCUjhC6IiWAEcxxYvaq0K81ihMTFjQ5TOiax1kSR2ugnW3QpEV5Y9cCvzJ_i1EQLrtHGckF_cNBexZjBOi9r3vI5jUZpfEDehSI0_CXS8-gL4K3NMzwZ7EEuIp8Bm8tipRnnOtO1Y2vYrTq7hkKyq3wdtc_61qV67KxY3E6Rivq4dvOcj11cx9_qX-zWdYm9ZNGj39cbKNoxoM8w5IN2HYo3FNJi1_Op5qRIWg7CVmDn9lAEY2A-0-45gyhPZsU)] bg-center"></div>
+                    <div class="flex items-center mb-6 relative z-10">
+                        <span class="material-symbols-outlined text-primary mr-3 text-3xl">bar_chart</span>
+                        <h2 class="font-display text-2xl text-primary neon-text tracking-wider">PERFORMANCE</h2>
+                    </div>
+                    <p class="mb-4 text-xs font-bold uppercase text-zinc-400 relative z-10 tracking-tighter">Track your wins before the shadow grows.</p>
+                    <div class="mb-6 space-y-2 relative z-10">
+                        <div class="h-1 bg-zinc-900 overflow-hidden flex">
+                            <div class="h-full bg-primary w-3/4 shadow-[0_0_8px_rgba(255,0,0,0.8)]"></div>
+                        </div>
+                        <p class="text-[9px] text-right text-red-900 uppercase font-bold">Signal Strength: Distorted</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-zinc-800/50 relative z-10">
+                        <p class="text-[10px] text-zinc-500 mb-4 italic leading-relaxed">Required: Historical Fill Rate, Avg Lead Time.<br/>Source: Performance.xlsx</p>
+                        <input class="w-full text-[10px] text-zinc-500 file:mr-4" type="file" name="file_performance" required/>
+                    </div>
+                </div>
+
+                <div class="bg-black/60 backdrop-blur-md border border-zinc-800 p-8 rounded-lg flex flex-col hover:border-primary/50 transition-all duration-500 group relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity bg-[url(https://lh3.googleusercontent.com/aida-public/AB6AXuDZm7dLavl4iu2RQCUjhC6IiWAEcxxYvaq0K81ihMTFjQ5TOiax1kSR2ugnW3QpEV5Y9cCvzJ_i1EQLrtHGckF_cNBexZjBOi9r3vI5jUZpfEDehSI0_CXS8-gL4K3NMzwZ7EEuIp8Bm8tipRnnOtO1Y2vYrTq7hkKyq3wdtc_61qV67KxY3E6Rivq4dvOcj11cx9_qX-zWdYm9ZNGj39cbKNoxoM8w5IN2HYo3FNJi1_Op5qRIWg7CVmDn9lAEY2A-0-45gyhPZsU)] bg-center"></div>
+                    <div class="flex items-center mb-6 relative z-10">
+                        <span class="material-symbols-outlined text-primary mr-3 text-3xl">shield_with_heart</span>
+                        <h2 class="font-display text-2xl text-primary neon-text tracking-wider">BUFFER</h2>
+                    </div>
+                    <div class="mb-8 border-l-2 border-primary/40 pl-4 relative z-10">
+                        <p class="text-sm italic text-zinc-400 font-bold leading-relaxed">"How long can you survive a total gateway breach?"</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-zinc-800/50 relative z-10">
+                        <p class="text-[10px] text-zinc-500 mb-4 italic leading-relaxed">Required: Inventory Buffer, Recovery Time.<br/>Source: Buffer.xlsx</p>
+                        <input class="w-full text-[10px] text-zinc-500 file:mr-4" type="file" name="file_buffer" required/>
+                    </div>
+                </div>
+
+                <div class="bg-black/60 backdrop-blur-md border border-zinc-800 p-8 rounded-lg flex flex-col hover:border-primary/50 transition-all duration-500 group relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity bg-[url(https://lh3.googleusercontent.com/aida-public/AB6AXuDZm7dLavl4iu2RQCUjhC6IiWAEcxxYvaq0K81ihMTFjQ5TOiax1kSR2ugnW3QpEV5Y9cCvzJ_i1EQLrtHGckF_cNBexZjBOi9r3vI5jUZpfEDehSI0_CXS8-gL4K3NMzwZ7EEuIp8Bm8tipRnnOtO1Y2vYrTq7hkKyq3wdtc_61qV67KxY3E6Rivq4dvOcj11cx9_qX-zWdYm9ZNGj39cbKNoxoM8w5IN2HYo3FNJi1_Op5qRIWg7CVmDn9lAEY2A-0-45gyhPZsU)] bg-center"></div>
+                    <div class="flex items-center mb-6 relative z-10">
+                        <span class="material-symbols-outlined text-primary mr-3 text-3xl">hub</span>
+                        <h2 class="font-display text-2xl text-primary neon-text tracking-wider">NETWORK</h2>
+                    </div>
+                    <p class="mb-8 text-xs text-zinc-400 uppercase tracking-widest relative z-10">Mapping inter-dimensional supplier nodes.</p>
+                    <div class="mt-auto pt-4 border-t border-zinc-800/50 relative z-10">
+                        <p class="text-[10px] text-zinc-500 mb-4 italic leading-relaxed">Required: Supplier Count, Concentration.<br/>Source: Network.xlsx</p>
+                        <input class="w-full text-[10px] text-zinc-500 file:mr-4" type="file" name="file_network" required/>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-8">
+                <button type="submit" class="group relative px-16 py-5 bg-black border-2 border-primary text-primary font-display text-2xl tracking-[0.2em] uppercase transition-all hover:bg-primary hover:text-black hover:shadow-neon-strong">
+                    <span class="relative z-10">Run Diagnostics</span>
+                    <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 animate-pulse"></div>
+                </button>
+            </div>
+            
+        </form>
+
+        <footer class="mt-20 text-center text-[10px] text-zinc-700 tracking-[0.4em] uppercase">
+            <div class="flex items-center justify-center space-x-6 mb-4">
+                <div class="h-px w-12 bg-zinc-900"></div>
+                <span class="text-zinc-500">Harkins-Brenner Lab Facility / Sector 4</span>
+                <div class="h-px w-12 bg-zinc-900"></div>
+            </div>
+            <p class="animate-pulse">Scanning for localized Upside Down market fluctuations...</p>
+        </footer>
+    </main>
+</body>
+</html>

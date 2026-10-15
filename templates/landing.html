@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Market Alert | Supply Chain Risk</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&amp;family=Special+Elite&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff0000",
+              "background-light": "#1a0202",
+              "background-dark": "#0a0000",
+            },
+            fontFamily: {
+              display: ["'Special Elite'", "cursive"],
+              mono: ["'Courier Prime'", "monospace"],
+            },
+            animation: {
+              'flicker': 'flicker 1.5s infinite alternate',
+              'pulse-glow': 'pulse-glow 2s infinite ease-in-out',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              flicker: {
+                '0%, 19%, 21%, 23%, 25%, 54%, 56%, 100%': {
+                  opacity: '1',
+                  filter: 'drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 0, 0, 0.6))',
+                },
+                '20%, 24%, 55%': {
+                  opacity: '0.4',
+                  filter: 'none',
+                },
+              },
+              'pulse-glow': {
+                '0%, 100%': { boxShadow: '0 0 15px 2px rgba(255, 0, 0, 0.5)' },
+                '50%': { boxShadow: '0 0 30px 10px rgba(255, 0, 0, 0.8)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-20px)' },
+              }
+            }
+          },
+        },
+      };
+    </script>
+<style>
+        body {
+            background-color: #0a0000;
+            overflow-x: hidden;
+            color: #ffffff;
+        }.vines-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(20, 0, 0, 0.8) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(20, 0, 0, 0.8) 0%, transparent 40%);
+            opacity: 0.6;
+        }
+        .dust-particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float linear infinite;
+        }
+        .neon-text {
+            text-shadow: 
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px #ff0000,
+                0 0 82px #ff0000,
+                0 0 92px #ff0000,
+                0 0 102px #ff0000,
+                0 0 151px #ff0000;
+        }
+        .neon-border {
+            box-shadow: 
+                0 0 .2rem #fff,
+                0 0 .2rem #fff,
+                0 0 2rem #ff0000,
+                0 0 0.8rem #ff0000,
+                0 0 2.8rem #ff0000,
+                inset 0 0 1.3rem #ff0000;
+        }
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, black 100%);
+            pointer-events: none;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-mono flex flex-col items-center justify-center min-h-screen p-4">
+<div class="vignette"></div>
+<div class="vines-overlay"></div>
+<script>
+        for (let i = 0; i < 30; i++) {
+            const dust = document.createElement('div');
+            dust.className = 'dust-particle';
+            const size = Math.random() * 3 + 1 + 'px';
+            dust.style.width = size;
+            dust.style.height = size;
+            dust.style.left = Math.random() * 100 + 'vw';
+            dust.style.top = Math.random() * 100 + 'vh';
+            dust.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            dust.style.opacity = Math.random() * 0.5;
+            document.body.appendChild(dust);
+        }
+    </script>
+<main class="relative z-20 flex flex-col items-center text-center max-w-4xl w-full">
+<div class="mb-12">
+<div class="inline-block border-4 border-primary p-8 md:p-12 animate-flicker neon-border">
+<h1 class="text-5xl md:text-8xl font-display text-primary tracking-tighter uppercase select-none">
+                    MARKET ALERT
+                </h1>
+</div>
+</div>
+<div class="mb-16 space-y-4">
+<p class="text-primary text-lg md:text-2xl font-mono tracking-[0.2em] uppercase">
+                The Warning Before The Upside Down
+            </p>
+<div class="h-px w-24 bg-primary mx-auto opacity-50"></div>
+</div>
+<a class="group relative inline-block px-12 py-5 overflow-hidden border border-white bg-black hover:bg-primary transition-all duration-300" href="/portal">
+<span class="relative z-10 text-white font-mono text-xl md:text-2xl tracking-widest uppercase transition-colors duration-300">
+                Get Started
+            </span>
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-0"></div>
+</a>
+<div class="mt-24 flex gap-8 text-xs md:text-sm text-gray-500 font-mono uppercase tracking-widest opacity-60">
+<span class="hover:text-primary cursor-pointer transition-colors">Risk Diagnostics</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Supply Chain Node</span>
+<span class="hover:text-primary cursor-pointer transition-colors">System Status: Critical</span>
+</div>
+</main>
+<div class="fixed top-8 left-8 z-30 opacity-40 hidden md:block">
+<div class="text-[10px] text-primary uppercase font-mono leading-tight">
+            Terminal Entry: #SCRR-092<br/>
+            Location: Hawkins National Laboratory<br/>
+            Signal: Fluctuating...
+        </div>
+</div>
+<div class="fixed bottom-8 right-8 z-30 opacity-40 hidden md:block">
+<div class="text-[10px] text-primary uppercase font-mono leading-tight text-right">
+            Encryption: AES-256<br/>
+            Source: Sector 4<br/>
+<span class="animate-pulse">● System Live</span>
+</div>
+</div>
+<div class="fixed inset-0 pointer-events-none z-[100] opacity-[0.03]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnHij5iIOnHDqTWXUs6xjTs80izyzH-XnXso5CxGqD9tQIVRnunXoZ4FE79iOdx5ezXHnyTuNr6oS-_QAtq3sET4ztKNRT3bxiWv1FbmASvUdoBUcxPxnuJBr9R6t3MNXFbGklS8smFdbHGIX7pW4FlEmkzyI2Q0RGq9bWDP0AT65H43zPpnuf9WXNjZ5dqQMQne5Qe92Er_RyN0tNXBTI1BHDtDjduwuIDSpMgW7Ilq1cu9WJWaBu6qCrYWGrR3FdkSWaHIJiG6I');"></div>
 
+</body></html>

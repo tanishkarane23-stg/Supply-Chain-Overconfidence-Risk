@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Analysis Report | Hawkins Lab</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&family=Creepster&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "{{ 'red' if status == 'DANGER' else 'green' }}", // Dynamic Color!
+              "background-light": "#1a0505",
+              "background-dark": "#050000",
+            },
+            fontFamily: {
+              display: ["'Special Elite'", "cursive"],
+              mono: ["'Courier Prime'", "monospace"],
+              horror: ["'Creepster'", "system-ui"],
+            },
+            animation: {
+              'flicker': 'flicker 1.5s infinite alternate',
+              'pulse-glow': 'pulse-glow 2s infinite',
+            },
+            keyframes: {
+              flicker: {
+                '0%, 100%': { opacity: 1 },
+                '50%': { opacity: 0.4 },
+              },
+              'pulse-glow': {
+                '0%, 100%': { boxShadow: '0 0 15px currentColor' },
+                '50%': { boxShadow: '0 0 35px currentColor' },
+              }
+            }
+          },
+        },
+      };
+    </script>
+    
+    <style type="text/tailwindcss">
+      /* DYNAMIC THEME COLORS BASED ON STATUS */
+      :root {
+        --theme-color: {{ '#ff0000' if status == 'DANGER' else '#00ff00' }};
+        --bg-color: {{ '#050000' if status == 'DANGER' else '#000500' }};
+      }
+      
+      body { background-color: var(--bg-color); color: #ddd; }
+      
+      .glow-text { text-shadow: 0 0 15px var(--theme-color); color: var(--theme-color); }
+      .border-theme { border-color: var(--theme-color); }
+      .bg-theme-faint { background-color: rgba(var(--theme-color), 0.1); }
+      
+      /* Red "Upside Down" Stuff (Only shows if DANGER) */
+      {% if status == 'DANGER' %}
+      .vines-container { position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBEkP5Mpb_wtsH8-zTB0jY_6J9H77lLGRWHNA7MtIEtTn1PPBdizygPqFScL4PmMZvQOgBvXH7Fl11ttCs10PehU6lJWlkpbQL7U8K9GlOsBTgshuUHIueLUVyczegS7RiEjkOIBATBviY6MyPP9yz514ml-zPhhT1Nu6_B2DkPFMN1oyG-BMKKV-IMz8is7LF-Q7txtj6tw4wVrfwoB0KLXdVfAzbG1XqhzXq9UGJg382JKLyTDH_KpNbpSZRriCkbnB_61XtMhA'); opacity: 0.4; mix-blend-mode: multiply; }
+      .alarm-overlay { position: fixed; inset: 0; z-index: 10; pointer-events: none; animation: alarm-flash 1s infinite alternate; mix-blend-mode: overlay; background: rgba(255,0,0,0.1); }
+      @keyframes alarm-flash { 0% { opacity: 0.1; } 100% { opacity: 0.3; } }
+      {% endif %}
+    </style>
+</head>
+<body class="font-mono overflow-x-hidden">
+
+    {% if status == 'DANGER' %}
+    <audio id="ticking-sound" loop autoplay>
+        <source src="{{ url_for('static', filename='clock.mp3') }}" type="audio/mpeg">
+    </audio>
+    <div class="vines-container"></div>
+    <div class="alarm-overlay"></div>
+    {% endif %}
+
+    <main class="relative z-20 container mx-auto px-4 py-12 flex flex-col items-center justify-center min-h-screen">
+        
+        <header class="text-center mb-12">
+            <h1 class="font-display text-4xl md:text-6xl tracking-widest animate-flicker mb-2 uppercase" style="color: var(--theme-color)">
+                Risk Analysis Report
+            </h1>
+            <div class="h-1 w-64 mx-auto shadow-[0_0_20px_currentColor]" style="background-color: var(--theme-color)"></div>
+        </header>
+        
+        <section class="text-center mb-16 relative">
+            <div class="relative inline-block">
+                <span class="font-display text-[120px] md:text-[180px] leading-none glow-text animate-pulse">
+                    {{ score }}%
+                </span>
+            </div>
+            
+            <div class="mt-8 flex items-center justify-center space-x-6 border-y py-6 px-12 backdrop-blur-md shadow-2xl border-theme" style="background-color: rgba(0,0,0,0.6)">
+                <span class="material-symbols-outlined text-5xl animate-flicker" style="color: var(--theme-color)">
+                    {{ 'warning' if status == 'DANGER' else 'verified' }}
+                </span>
+                <h2 class="font-display text-2xl md:text-4xl tracking-tighter uppercase" style="color: var(--theme-color)">
+                    {% if status == 'DANGER' %}
+                        CRITICAL OVERCONFIDENCE DETECTED
+                    {% else %}
+                        SYSTEM STABLE & RESILIENT
+                    {% endif %}
+                </h2>
+                <span class="material-symbols-outlined text-5xl animate-flicker" style="color: var(--theme-color)">
+                    {{ 'warning' if status == 'DANGER' else 'verified' }}
+                </span>
+            </div>
+        </section>
+        
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+            
+            <div class="bg-black/80 border border-theme p-8 rounded shadow-2xl backdrop-blur-xl group">
+                <div class="flex items-center space-x-3 mb-8">
+                    <span class="material-symbols-outlined text-3xl" style="color: var(--theme-color)">query_stats</span>
+                    <h3 class="font-display text-2xl text-white uppercase tracking-wider">Performance</h3>
+                </div>
+                <div class="space-y-5 text-base">
+                    <div class="flex justify-between border-b border-gray-800 pb-3">
+                        <span class="text-gray-400">Fill Rate:</span>
+                        <span class="text-white font-bold">{{ fill_rate }}%</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-800 pb-3">
+                        <span class="text-gray-400">Lead Time:</span>
+                        <span class="text-white font-bold">{{ lead_time }} days</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-black/80 border border-theme p-8 rounded shadow-2xl backdrop-blur-xl group">
+                <div class="flex items-center space-x-3 mb-8">
+                    <span class="material-symbols-outlined text-3xl" style="color: var(--theme-color)">shield</span>
+                    <h3 class="font-display text-2xl text-white uppercase tracking-wider">Buffer</h3>
+                </div>
+                <div class="space-y-5 text-base">
+                    <div class="flex justify-between border-b border-gray-800 pb-3">
+                        <span class="text-gray-400">Buffer Stock:</span>
+                        <span class="text-white font-bold">{{ buffer_days }} days</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-800 pb-3">
+                        <span class="text-gray-400">Recovery:</span>
+                        <span class="text-white font-bold">{{ recovery_time }} days</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-black/80 border border-theme p-8 rounded shadow-2xl backdrop-blur-xl group">
+                <div class="flex items-center space-x-3 mb-8">
+                    <span class="material-symbols-outlined text-3xl" style="color: var(--theme-color)">hub</span>
+                    <h3 class="font-display text-2xl text-white uppercase tracking-wider">Network</h3>
+                </div>
+                <div class="space-y-5 text-base">
+                    <div class="flex justify-between border-b border-gray-800 pb-3">
+                        <span class="text-gray-400">Suppliers:</span>
+                        <span class="text-white font-bold">{{ supplier_count }}</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-800 pb-3">
+                        <span class="text-gray-400">Concentration:</span>
+                        <span class="text-white font-bold">{{ concentration }}</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="mt-16 text-center">
+            <a class="inline-block px-16 py-5 text-white font-display text-2xl uppercase tracking-[0.2em] transition-all duration-300 hover:scale-105 shadow-2xl border-2 border-transparent hover:border-white/40" 
+               style="background-color: var(--theme-color)"
+               href="/input">
+                Run Another Scan
+            </a>
+        </footer>
+
+    </main>
+
+    {% if status == 'DANGER' %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById("ticking-sound");
+            var playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    document.body.addEventListener('click', function() { audio.play(); }, { once: true });
+                });
+            }
+        });
+    </script>
+    {% endif %}
+
+</body>
+</html>
