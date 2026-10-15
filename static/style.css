@@ -1,1 +1,54 @@
+/* --- GLOBAL THEME (Stranger Things Style) --- */
+body {
+    background-color: #050505; /* Deep Black */
+    color: #c9c9c9;            /* Retro Grey Text */
+    font-family: 'Courier New', Courier, monospace; /* The Typewriter Font */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    transition: background-color 0.5s ease;
+}
 
+/* --- HEADINGS --- */
+h1, h2, h3 {
+    text-transform: uppercase;
+    color: #ff0000;
+    text-shadow: 0 0 10px #cc0000; /* Red Neon Glow */
+}
+
+/* --- BUTTONS (Shared Red Style) --- */
+button {
+    background-color: #800000; /* Dark Red */
+    color: white;
+    border: 1px solid red;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    box-shadow: 0 0 10px #550000;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff0000; /* Bright Red on Hover */
+    box-shadow: 0 0 20px #ff0000;
+    transform: scale(1.05);
+}
+
+/* --- LINKS --- */
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* --- ANIMATION: THE UPSIDE DOWN (Flashing Red) --- */
+@keyframes panic-flash {
+    0% { background-color: #220000; }
+    50% { background-color: #660000; box-shadow: inset 0 0 50px red; }
+    100% { background-color: #220000; }
+}
+
+/* Apply this class to the <body> when danger is detected */
+.danger-mode {
+    animation: panic-flash 1s infinite;
+}
