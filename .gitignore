@@ -1,0 +1,12 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual Environments
+.venv-1/
+venv/
+env/
+
+# Outdated backups
+*_backup.py
+*_og.html
